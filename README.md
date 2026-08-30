@@ -9,7 +9,7 @@ deployed automatically from this repo via GitHub Actions.
 - **CloudFront** — CDN in front of S3, handles HTTPS via ACM cert, this is what your domain actually points to
 - **ACM** — free TLS certificate (must be requested in `us-east-1`, CloudFront requirement)
 - **Route 53** — DNS: your domain's hosted zone, alias records pointing to CloudFront
-- **Terraform** — defines all of the above as code, in `terraform/`
+- **OpenTofu** — defines all of the above as code, in `tofu/`
 - **GitHub Actions** — on every push to `main` that touches `site/`, syncs files to S3 and invalidates the CloudFront cache
 
 Why this instead of AWS Amplify Hosting: Amplify's free tier (build minutes,
@@ -33,26 +33,26 @@ domain before running Terraform.
 
 ### 2. Install tools locally
 
-- [Terraform](https://developer.hashicorp.com/terraform/install) (>= 1.5)
+- [OpenTofu](https://opentofu.org/docs/intro/install/) (>= 1.6)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html), then run `aws configure` with your own credentials
 
-Claude cannot run `terraform apply` for you — it needs your AWS credentials,
+Claude cannot run `tofu apply` for you — it needs your AWS credentials,
 which should never be pasted into a chat. Run these steps yourself, locally.
 
 ### 3. Provision the infrastructure
 
 ```bash
-cd terraform
-terraform init
-terraform apply -var="domain_name=yourdomain.com"
+cd tofu
+tofu init
+tofu apply -var="domain_name=tncherry.com"
 ```
 
 This takes 15–20 minutes the first time (CloudFront distributions are slow to
 deploy). When it finishes, note the two outputs:
 
 ```bash
-terraform output
-# s3_bucket        = "yourdomain-com-site"
+tofu output
+# s3_bucket        = "tncherry-com-site"
 # cloudfront_domain = "d123abc456.cloudfront.net"
 ```
 
@@ -60,7 +60,7 @@ You'll also need the CloudFront distribution ID (not shown above) — get it
 with:
 
 ```bash
-aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='yourdomain.com'].Id" --output text
+aws cloudfront list-distributions --query "DistributionList.Items[?Aliases.Items[0]=='tncherry.com'].Id" --output text
 ```
 
 ### 4. Create a deploy-only IAM user
@@ -92,14 +92,14 @@ CloudFront cache. Give it a minute or two, then check `https://yourdomain.com`.
 ## Day-to-day
 
 Edit anything in `site/`, commit, push to `main` — it deploys itself. No need
-to touch Terraform again unless you're changing infrastructure (e.g. adding a
+to touch OpenTofu again unless you're changing infrastructure (e.g. adding a
 new subdomain).
 
 ## Teardown (if you ever want to)
 
 ```bash
-cd terraform
-terraform destroy
+cd tofu
+tofu destroy
 ```
 
 Removes the S3 bucket, CloudFront distribution, ACM cert, and DNS records.

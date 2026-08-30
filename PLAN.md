@@ -12,10 +12,11 @@ QR flow externally (linked from the site, not hosted by us).
    Drive, create the album, pay the one-time ~$39 for Limitless (real-time
    gallery, QR code, personalized link).
 3. **Push this repo to GitHub.** Already git-initialized locally; just needs
-   a remote and a push.
-4. **Provision AWS infra.** `terraform apply` from `terraform/` with our
-   domain, using our own AWS credentials, run locally (never through Claude).
-   Takes 15–20 min for CloudFront to deploy.
+   a remote and a push. Repo: `tee2thehee/tncherry`.
+4. **Provision AWS infra.** `tofu apply` from `tofu/` with our domain, using
+   our own AWS credentials, run locally (never through Claude). Takes 15–20
+   min for CloudFront to deploy. (Using OpenTofu, not Terraform — same HCL,
+   drop-in compatible, no code changes needed.)
 5. **Wire up GitHub Actions.** Deploy-only IAM user scoped to just this
    bucket + distribution; its keys, bucket name, and distribution ID go in
    as GitHub repo secrets. From here, `git push` auto-deploys.
@@ -46,3 +47,9 @@ repository variables (a small `envsubst` step in the deploy workflow) rather
 than hardcoding it, so the public repo shows the actual engineering
 (interview-relevant) while the personal details never enter git history at
 all. Flagged here so we don't forget it once we get to step 7.
+
+## Domain
+
+`tncherry.com`, registered via Cloudflare Registrar ($10.46/yr), DNS
+delegated to a Route 53 hosted zone (registrar and DNS host don't have to
+match — see step 4).
