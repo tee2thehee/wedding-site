@@ -70,3 +70,5 @@ providers.
 
 **Fix:** Added `ttl = 300` to the `apex` and `www` records (the
 `cert_validation` record already had `ttl = 60`).
+
+
