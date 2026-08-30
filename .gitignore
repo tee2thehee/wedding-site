@@ -4,3 +4,4 @@
 .terraform.lock.hcl
 .DS_Store
 .git.broken.*
+PLAN.md
