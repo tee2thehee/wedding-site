@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[Names] — Wedding</title>
+  <style>
+    :root {
+      --ink: #2b2620;
+      --paper: #faf6ef;
+      --accent: #a6714f;
+      --line: #e4dccc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, 'Times New Roman', serif;
+      line-height: 1.6;
+    }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+    header {
+      text-align: center;
+      padding: 80px 24px 48px;
+      border-bottom: 1px solid var(--line);
+    }
+    header .names {
+      font-size: clamp(2rem, 6vw, 3rem);
+      letter-spacing: 0.02em;
+      margin: 0 0 12px;
+    }
+    header .date {
+      font-size: 1.1rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+    section:last-of-type { border-bottom: none; }
+    h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .details p { margin: 4px 0; }
+    .photos {
+      text-align: center;
+    }
+    .photos a {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 14px 28px;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .photos img {
+      display: block;
+      margin: 24px auto 0;
+      width: 180px;
+      height: 180px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 24px 80px;
+      font-size: 0.9rem;
+      color: #8a8072;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="names">[Partner 1] &amp; [Partner 2]</div>
+    <div class="date">[Month Day, Year] · [City, State]</div>
+  </header>
+
+  <div class="wrap">
+    <section class="details">
+      <h2>The Details</h2>
+      <p><strong>Ceremony:</strong> [time] — [venue name, address]</p>
+      <p><strong>Reception:</strong> [time] — [venue name, address]</p>
+      <p><strong>Attire:</strong> [dress code]</p>
+    </section>
+
+    <section>
+      <h2>Getting There</h2>
+      <p>[Hotel block name] — [booking link or code]</p>
+      <p>[Any travel notes: parking, shuttle, nearby airport]</p>
+    </section>
+
+    <section>
+      <h2>Registry</h2>
+      <p>[Registry link, or "your presence is present enough" note]</p>
+    </section>
+
+    <section class="photos">
+      <h2>Share Your Photos</h2>
+      <p>Scan the code or tap below to drop your pictures from the day into our album.</p>
+      <a href="[WEDUPLOADER_ALBUM_URL]">Upload Photos</a>
+      <!-- Replace with your actual WedUploader QR image, e.g.: -->
+      <!-- <img src="/qr-code.png" alt="QR code to upload photos" /> -->
+    </section>
+  </div>
+
+  <footer>
+    We can't wait to celebrate with you.
+  </footer>
+</body>
+</html>
