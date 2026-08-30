@@ -1,3 +1,5 @@
+
+
 output "s3_bucket" {
   description = "S3 bucket name — use as S3_BUCKET_NAME GitHub secret"
   value       = aws_s3_bucket.site.id
@@ -12,3 +14,4 @@ output "cloudfront_distribution_id" {
   description = "Use as CLOUDFRONT_DISTRIBUTION_ID GitHub secret"
   value       = aws_cloudfront_distribution.site.id
 }
+

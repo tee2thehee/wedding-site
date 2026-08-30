@@ -5,6 +5,6 @@ variable "aws_region" {
 }
 
 variable "domain_name" {
-  description = "Your registered apex domain, e.g. jamieandtien.com. Must already have a Route 53 hosted zone."
+  description = "Your registered apex domain, e.g. tncherry.com. A Route 53 hosted zone for it is created by this stack, not assumed to exist."
   type        = string
 }
